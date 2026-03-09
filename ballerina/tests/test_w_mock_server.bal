@@ -270,7 +270,7 @@ function testPostMessageMock() returns error? {
 }
 function testGetAttachmentMock() returns error? {
     Attachment attachment = check gmailClientForMockServer->/users/me/messages/["123"]/attachments/["123"];
-    test:assertTrue(attachment.data != "", msg = "/users/[userId]/messages/[sentMessageId]/attachments/[attachmentId] failed");
+    test:assertTrue((attachment.data ?: []).length() > 0, msg = "/users/[userId]/messages/[sentMessageId]/attachments/[attachmentId] failed");
 }
 
 @test:Config {

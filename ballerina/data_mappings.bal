@@ -27,7 +27,7 @@ isolated function convertOASMessageToMessage(oas:Message response) returns Messa
     do {
         string? rawMessage = response.raw;
         if rawMessage is string {
-            email.raw = check base64UrlDecode(rawMessage);
+            email.raw = check base64UrlDecodeToString(rawMessage);
         }
     } on fail error err {
         return error ValueEncodeError(string `Returned message raw field${err.message()}`, err.cause());
